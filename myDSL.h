@@ -4,6 +4,8 @@
 #include <assert.h>
 using namespace std;
 
+
+//Single Linked List
 class SingNode {	//Single linked list
 private:
 	int data;	//variable for storing the data
@@ -33,6 +35,19 @@ public:
 	void addAfter(SingNode* q, int v);	//adds a node after a specified node in the list
 
 	void delHead();	//deletes the head of the list (also can't be const,since it needs to be modifiable)
+	void delTail();	//deltes the tail of the list
+	void removeValue(int v);	//removes the node with a certain value
+	void removeLast();	//removes the last node in the list
+
+	bool hasLast() const;	//Checks if a list only has one element
+	SingNode* searchPrev(SingNode* q) const;	//Search a node whose next is q
+
+	//Additional operations
+	void Clear();				//remove allnodes
+	int removeAll(int v);		//remove all nodes whose value is v, and return the number of nodes removed
+	Node* Search(int v) const;	//return Node* whose value is v, returns NULL if there is no such node
+	int Length() const;			//return length of the list
+	int countData(int v) const;	//return how manyv are in the list
 };
 
 SingList::SingList() {	//creates an empty list
@@ -40,9 +55,18 @@ SingList::SingList() {	//creates an empty list
 }
 
 SingList::~SingList() {	//deletes a list
+	
 	while (IsEmpty() == false) {	//while the list is not empty
 		delHead();	//deletes the head until the list is gone
 	}
+
+	/*	Without using the delHead() function
+	while (h != NULL) {
+		SingNode* r = h;
+		h = h->next;
+		delete r;
+	}
+	*/
 }
 
 bool SingList::IsEmpty() const {	//checks if the list is empty
@@ -105,7 +129,7 @@ void SingList::addAfter(SingNode* q, int v) {	//adds a new node to the list afte
 }
 
 void SingList::delHead()  {
-	//assert(IsEmpty() != true);
+	//assert(IsEmpty() != true);	//not needed?
 	SingNode* r = h;	//creates r pointer then points to head node
 	h = h->next;	//new head is the next node in list
 	delete r;	//deletes the old head from list
@@ -114,6 +138,7 @@ void SingList::delHead()  {
 
 /***************************************************************************************************************************/
 
+//Double Linked List
 class Node {		//Node class I utilize from my CMPSC Course
 private:			 
 	int data;		//Data value of a node that will contain the actual value in the node
@@ -324,6 +349,9 @@ void List::displayValues()			//Prints out the contents of the nodes(Plan to upda
 	}
 }
 
+/*************************************************************************************************************/
+
+//Stack
 class Stack		//Stack class for Stack Data Structure
 {
 private:
