@@ -7,6 +7,13 @@ Some of the data structures this header contains:
 * Heap
 * Hash Table
 
+##### Table of Contents  
+[Headers](#headers)  
+[Emphasis](#emphasis)  
+...snip...    
+<a name="headers"/>
+## Headers
+
 ## Single Linked List
 ![linked_list_image](single_list.png)
 
