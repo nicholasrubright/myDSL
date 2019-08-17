@@ -53,5 +53,12 @@ class SingList {
 ### Notable Operations
 Some of the operations I am going to expand upon and go into a more in-depth explanation.
 #### addtoHead
+The beginning of the list is not too excited, a simple if statement to see if the list is empty to begin with. But the else statment we will look close at.
+```c++
+    SingNode* r = new SingNode(v);
+    r->next = head;
+    head = r;
+```
+Here we see that we create a new node that holds the value the function was given. We then use the new node's pointer to point to the old head node of the list. Lastly we change the head pointer to point to the new node, making the new head of the list.
 ## Double Linked List
 
