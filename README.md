@@ -49,5 +49,8 @@ class SingList {
 };
 ```
 
+### Notable Operations
+Some of the operations I am going to expand upon and go into a more in-depth explanation.
+#### addtoHead
 ## Double Linked List
 
