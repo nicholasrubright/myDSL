@@ -7,10 +7,6 @@ Some of the data structures this header contains:
 * Heap
 * Hash Table
 
-## Table of Contents  
-[Single Linked List](##Single Linked List)  
-[Double Linked List](##Double Linked List)    
-<a name="headers"/>
 
 ## Single Linked List
 ![linked_list_image](single_list.png)
