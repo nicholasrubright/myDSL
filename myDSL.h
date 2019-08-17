@@ -4,6 +4,104 @@
 #include <assert.h>
 using namespace std;
 
+class SingNode {	//Single linked list
+private:
+	int data;	//variable for storing the data
+	SingNode* next;	//pointer to the next node in the list
+public:
+	SingNode(int d, SingNode* n = NULL)	//default argument	
+	{
+		data = d;
+		next = n;
+	}
+	friend class SingList;
+};
+
+class SingList {
+private:
+	SingNode* h;
+	SingNode* t;
+public:
+	SingList();				//default constructor for the linked list
+	~SingList();			//deconstructor for linked list
+	bool IsEmpty() const;	//checks if the node is empty
+	int getHead() const;	//returns the value at the head of the list
+	int getTail() const;	//returns the value at the tail of the list
+	void addEmpty(int v);	//adds a node to a empty list
+	void addtoHead(int v);	//adds a node and turns it into new head
+	void addtoTail(int v);	//adds a node and turns it into new tail
+	void addAfter(SingNode* q, int v);	//adds a node after a specified node in the list
+};
+
+SingList::SingList() {	//creates an empty list
+	h = t = NULL;	//sets the head and tail to null
+}
+
+SingList::~SingList() {
+
+}
+
+bool SingList::IsEmpty() const {	//checks if the list is empty
+	if (h && t == NULL)	//if both head and tail are null
+		return true;	//then the list is empty
+	return false;		//else it is not empty
+}
+
+int SingList::getHead() const {	//returns value of the head node
+	assert(h != NULL);	//checks if h has a value
+	return h->data;		//returns the value of h
+	
+	//return (*h).data;	//this is the same thing as h->data
+}
+
+int SingList::getTail() const {	//returns the value of the tail node
+	assert(t != NULL);	//checks if t has a value
+	return t->data;		//returns the value of t
+}
+
+void SingList::addEmpty(int v) {	//adds a new node to the list
+	SingNode* r = new SingNode(v);	//creates new node with value given
+	h = r;	//sets new node to head of list
+	t = r;	//sets new node to tail of list
+	r->next = NULL;	//sets the next pointer to null since nothing else in list
+}
+
+void SingList::addtoHead(int v) {	//adds new node to list and makes it new head
+	if (IsEmpty() == true)	//checks if the list is empty
+	{
+		addEmpty(v);	//adds the value to empty if it is true
+	}
+	else
+	{
+		SingNode* r = new SingNode(v);	//creates new node with given value
+		r->next = h;	//points the new node's next pointer to previous head
+		h = r;	//h is now new node
+	}
+}
+
+void SingList::addtoTail(int v) {	//adds new node to list and makes it new tail
+	if (IsEmpty() == true)	//checks if the list is empty
+	{
+		addEmpty(v);	//adds the value to empty if it is true
+	}
+	else
+	{
+		SingNode* r = new SingNode(v);	//creates new node with given value
+		r->next = NULL;	//points the next to null since it's at the end of the list
+		t->next = r;	//previous tail pointer now points to new node
+		t = r;	//sets the tail to new node
+	}
+}
+
+void SingList::addAfter(SingNode* q, int v) {	//adds a new node to the list after a certain node in the list
+	assert(IsEmpty() != true);	//checks if the list is empty
+	SingNode* r = new SingNode(v);	//creates new node with given value
+	r->next = q->next;	//new node points to what the given node was pointing at
+	q->next = r;	//given node now points to new node
+}
+
+/***************************************************************************************************************************/
+
 class Node {		//Node class I utilize from my CMPSC Course
 private:			 
 	int data;		//Data value of a node that will contain the actual value in the node
