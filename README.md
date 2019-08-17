@@ -9,6 +9,8 @@ Some of the data structures this header contains:
 
 ## Single Linked List
 ![linked_list_image](single_list.png)
+A link list is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer.
+It is one of the simplest and most common data structures.
 
 ## Double Linked List
 
