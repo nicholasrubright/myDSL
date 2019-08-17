@@ -39,9 +39,9 @@ SingList::SingList() {	//creates an empty list
 	h = t = NULL;	//sets the head and tail to null
 }
 
-SingList::~SingList() {
-	while (IsEmpty() == false) {
-		delHead();
+SingList::~SingList() {	//deletes a list
+	while (IsEmpty() == false) {	//while the list is not empty
+		delHead();	//deletes the head until the list is gone
 	}
 }
 
