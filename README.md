@@ -8,6 +8,7 @@ Some of the data structures this header contains:
 * Hash Table
 
 ## Single Linked List
+![linked_list_image](single_list.png)
 
 ## Double Linked List
 
