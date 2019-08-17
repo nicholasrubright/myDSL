@@ -1,0 +1,272 @@
+//C++ Data Structure Library
+//Contains Linked List, Stack, Queue, Hash Table, Graph, and Trees
+#include <iostream>
+#include <assert.h>
+using namespace std;
+
+class Node {		//Node class I utilize from my CMPSC Course
+private:			 
+	int data;		//Data value of a node that will contain the actual value in the node
+	Node* next;		//Next pointer of a node to move to the next node in the list
+	Node* prev;		//Previous pointer of a node that will move to the previous node in the list
+public:
+	Node(int d, Node* n = NULL, Node* p = NULL)		//Nodes will have a data value, a next pointer and a previous pointer
+	{
+		data = d;			//assigns the values and pointers to it's respected assignment
+		next = n;
+		prev = p;
+	}
+	friend class List;
+	friend class Stack;
+};
+
+class List {			//List class utilized from CMPSC Course
+private:
+	Node* head;			//Pointers in the list to signify the beginning node
+	Node* tail;			//Pointer in the list to signify the last node
+public:
+	List();		//Intitalizes a empty list
+	~List();	//Destructor for list
+	bool IsEmpty() const; //creates an empty list
+	int getHead() const; //returns the head of the list
+	int getTail() const; //returns the tail of the list
+	void addEmpty(int v); //adds an element to an empty list
+	void addToHead(int v); //adds an element to the front of the list
+	void addToTail(int v); //adds an element to the back of the list
+	void addAfter(Node* q, int v); //adds an element after a specified node
+	int getHead();	//returns the value of the head node in the list
+	int getTail();	//returns the value of the tail node in the list
+	
+	void delNode(Node* q);	//deletes a specified node from the list, Can't because a node is only defined by the value inside(del value?)
+	void delHead();	//deletes the head node from the list
+	void delTail();	//deletes the tail node from the list
+
+	bool HasOne() const;	//Checks if a list has only one element
+	void RemoveLast();		//Remove the last element (when the list only has one element)
+
+	//Custom operations I designed using skills I learned from class
+
+	int getLength() const;	//Returns the length of a Linear List by counting the individual nodes
+	int getSum();		//Returns the sum of the node's values
+	void condenseList(); //Combines two nodes into one by adding the values
+	void changeValue(Node* q, int v);	//Changes the value of a node, again can't unless we know the individual nodes
+	void deleteValue(int v);	//searches for value and deletes the node with the value
+	int countValue(int v);	//counts the number of iterations a certain value appears in the list
+	void displayValues();	//prints the values of the list
+
+};
+
+List::List() {
+	head = tail = NULL;		//Creates an empty list
+}
+
+List::~List()	//Destructor for list
+{
+	while (IsEmpty() == false)
+	{
+		delHead();
+	}
+}
+
+bool List::IsEmpty() const	//returns if a list is empty
+{
+	if (head && tail == NULL)	//Checks if the head and the tail pointers are NULL
+		return true;			//Will return true since there is nothing in the list
+	else
+		return false;			//or return false since there is element(s) in the list
+}
+
+int List::getHead() const
+{
+	return head->data;	//return the value at the head of the list
+}
+
+int List::getTail() const
+{
+	return tail->data;	//returns the value of the tail of the list
+}
+
+void List::addEmpty(int v)	//Checks if the list is empty, then adds a new node
+{
+	//assert(IsEmpty() == true);	//Checks if the list is empty
+	Node* r = new Node(v);	//Creates a new node
+	r->next = NULL;	//r next pointer is set to NULL
+	r->prev = NULL;	//r previous pointer is set to NULL
+	head = tail = r;	//head and tail are set to r
+
+}
+
+void List::addToHead(int v)	//adds a value to the start of the list
+{
+	Node* r = new Node(v);	//creates new node
+	head->prev = r;	//the old head's prev pointer points to new node
+	r->next = head;	//the new node next pointer points to the old head;
+	r->prev = NULL;	//new node prev pointer points to NULL
+	head = r;	//sets head to new node
+}
+
+void List::addToTail(int v)	//adds a new node to the end of a list
+{
+	Node* r = new Node(v);	//created new node with value
+	tail->next = r;	//switches the next node of tail to r
+	r->prev = tail;	//r prev pointer is now to old tail
+	r->next = NULL;	//the new node next pointer points to NULL
+	tail = r;	//sets tail equal to new node
+}
+
+void List::addAfter(Node* q, int v)
+{
+	Node* r = new Node(v);	//creates a new node
+	r->next = q->next;	//the next value of the new node points to the next value of the specified node
+	q->next = r;	//next value of q is set to r
+	r->prev = q;	//r previous pointer is set to q
+}
+
+void List::delHead()	//moves the head to the next node and deletes old head
+{
+	Node* r = head;		//creates a new node pointer to the head node
+	head = head->next;	//moves the head of the list to the next node
+	head->prev = NULL;	//makes the new head's prev pointer NULL
+	delete r;			//deletes the old head node
+}
+
+void List::delTail()	//moves the tail to the previous node
+{
+	Node* r = tail;		//creates a new node pointer to the head node
+	tail = tail->prev;	//moves the tail of the list to the next node
+	tail->next = NULL;	//makes the new tail's next pointer NULL
+	delete r;			//deletes the old tail node
+}
+
+int List::getHead()
+{
+	return head->data;	//returns the value of the head node
+}
+
+int List::getTail()
+{
+	return tail->data;	//returns the value of the tail node
+}
+
+bool List::HasOne() const	//Returns boolean whether it has only one element in list
+{
+	if (head == NULL)		//Checks if the head is set to null
+		return false;		//returns false since means no elements in List
+	if (head == tail)		//checks if the head and tail are the same node
+		return true;		//which means that there is only one node in the list
+	return false;			//returns false for any other condition
+}
+
+void List::RemoveLast()		//Removes the last element in the List (Should be only element)
+{
+	delete head;			//Deletes the head pointer
+	head = tail = NULL;		//Resets the list to NULL
+}
+
+
+int List::getLength() const	//returns the number of nodes
+{
+	int counter = 1;	//counter for each node	
+	Node* r = head;		//Create node that starts at the head
+
+	if (IsEmpty() == true)	//determines if the list is empty
+	{
+		return counter - 1;	//set the counter to 1 less to show there is no list
+	}
+	else
+	{
+		while (r != NULL)	//while loop until the node next pointer is NULL
+		{
+			r = r->next;	//switches r to the next r next node
+			counter++;		//increment counter by one
+		}
+	}
+	return counter;		//returns the counter number
+}
+
+int List::getSum()		//Returns the sum of the List
+{
+	int sum = 0;		//intializes the sum to 0
+	Node* r = head;		//Create a new node pointer and set it to point to the head node
+
+	if (IsEmpty() == true)		//checks the the list is empty
+	{
+		return 0;				//returns 0 since the list doesn't have any elements
+	}
+	else
+	{
+		while (r != NULL)		//while loop to run until the last node
+		{
+			sum = sum + r->data;		//Take the sums and adds the node's value to it
+			r = r->next;				//Moves the pointer to the next node
+		}
+	}
+	return sum;			//returns the sum of the list
+}
+
+void List::displayValues()			//Prints out the contents of the nodes(Plan to update the way its printed to show the structure more)
+{
+	Node* r = head;			//Creates a new node and makes it point to the head node
+	while (r != NULL)		//Loop to go through the list
+	{
+		cout << r->data << ", ";	//Prints out the value of node
+		r = r->next;				//moves the pointer to the next node
+	}
+}
+
+class Stack		//Stack class for Stack Data Structure
+{
+private:
+	List l;				//Node to the top value on stack
+public:
+	Stack();				//default constructor for Stack
+	~Stack();				//Deconstructor
+	bool IsEmpty() const;	//Checks if the stack is empty
+	int Top() const;		//Returns the top element of the stack
+	void Push(int v);		//Pushes value onto of stack
+	int Pop();				//Takes top most element off of stack and returns the value
+	void Clear();
+};
+
+Stack::Stack()				//Constructor for Stack
+{
+	
+}
+
+Stack::~Stack()
+{
+	while (IsEmpty() == false)
+	{
+		Clear();
+	}
+}
+
+void Stack::Push(int v)		//Pushes element v onto stack
+{
+	l.addToHead(v);
+}
+
+bool Stack::IsEmpty() const
+{
+	return l.IsEmpty();
+}
+
+int Stack::Pop()
+{
+	int t = Top();
+	l.delHead();
+	return t;
+}
+
+int Stack::Top() const
+{
+	return l.getHead();
+}
+
+void Stack::Clear()
+{
+	while (IsEmpty() == false)
+	{
+		Pop();
+	}
+}
