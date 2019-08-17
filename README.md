@@ -7,5 +7,7 @@ Some of the data structures this header contains:
 * Heap
 * Hash Table
 
-## Linked List
-The Linked List's basics are finish but I plan to add more functions and algorithms to the structure to further my practice with it.
+## Single Linked List
+
+## Double Linked List
+
