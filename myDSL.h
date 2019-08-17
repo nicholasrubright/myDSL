@@ -45,7 +45,7 @@ public:
 	//Additional operations
 	void Clear();				//remove allnodes
 	int removeAll(int v);		//remove all nodes whose value is v, and return the number of nodes removed
-	Node* Search(int v) const;	//return Node* whose value is v, returns NULL if there is no such node
+	SingNode* Search(int v) const;	//return Node* whose value is v, returns NULL if there is no such node
 	int Length() const;			//return length of the list
 	int countData(int v) const;	//return how manyv are in the list
 };
@@ -152,7 +152,6 @@ public:
 		prev = p;
 	}
 	friend class List;
-	friend class Stack;
 };
 
 class List {			//List class utilized from CMPSC Course
@@ -179,6 +178,8 @@ public:
 	bool HasOne() const;	//Checks if a list has only one element
 	void RemoveLast();		//Remove the last element (when the list only has one element)
 
+	void Clear();	
+
 	//Custom operations I designed using skills I learned from class
 
 	int getLength() const;	//Returns the length of a Linear List by counting the individual nodes
@@ -189,6 +190,7 @@ public:
 	int countValue(int v);	//counts the number of iterations a certain value appears in the list
 	void displayValues();	//prints the values of the list
 
+	//friend class Stack;
 };
 
 List::List() {
@@ -352,4 +354,45 @@ void List::displayValues()			//Prints out the contents of the nodes(Plan to upda
 /*************************************************************************************************************/
 
 //Stack
+class Stack {
+private:
+	List list;	//Uses double linked list
+public:
+	//Stack() {};	//Constructor for stack
+	//~Stack() { Clear(); }	//Destructor for Stack (Utilizes the clear operator from the linked list)
 
+	void Push(int el);	//Pushes element ontop of stack
+	int Pop();	//takes the top element off and returns the value of it
+	int Top() const;	//returns top element value
+	bool IsEmpty() const;	//checks if the stack is empty
+	void Clear();	//removes all the elements
+};
+
+void Stack::Push(int el) {
+	list.addToHead(el);
+}
+
+int Stack::Pop() {
+	int t = Top();
+	list.delHead();
+	return t;
+	/*
+	return l.getHead();
+	l.delHead;
+	*/
+}
+
+int Stack::Top() const {
+	return list.getHead();
+}
+
+bool Stack::IsEmpty() const {
+	return list.IsEmpty();
+}
+
+void Stack::Clear() {
+	while (IsEmpty() == false) {
+		Pop();
+	}
+	//l.~List(); //This would delete the whole list and not just clear it out
+}
