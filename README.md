@@ -17,16 +17,16 @@ It is one of the simplest and most common data structures.
 The first node in a linked list is known as the head and the last is the tail. The tail points to nothing (NULL) representing the end of a list, depicted by a black dot.
 
 ```c++
-class SingNode {
+class SingNode {    //Node class for single linked list
     private:
-        int data;
-        SingNode* next;
+        int data;   //The data that the node holds
+        SingNode* next;     //A pointer to the next node of the list
     public:
-        SingNode(int d, SingNode* n = NULL) {
+        SingNode(int d, SingNode* n = NULL) {   //default constructor
             data = d;
             next = n;
         }
-    friend class SingList;
+    friend class SingList;  //Allows the SingList class to use SingNode
 }
 ```
 
