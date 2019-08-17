@@ -30,7 +30,7 @@ class SingNode {    //Node class for single linked list
 };
 ```
 
-The SingList class creates the list, it uses the nodes to form the structure. It only uses two variables which are the head and tail. The other functions are various operations that can be preformed on the list.
+The `SingList` class creates the list, it uses the nodes to form the structure. It only uses two variables which are the `head` and `tail`. The other functions are various operations that can be preformed on the list.
 
 ```c++
 class SingList {
