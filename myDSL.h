@@ -2,6 +2,7 @@
 //Contains Linked Lists, Trees, Tries, Graphs, Stack, Queue, Heap, and Hash Tables
 #include <iostream>
 #include <assert.h>
+#include <queue>	//for breadthfirst
 using namespace std;
 
 
@@ -190,6 +191,8 @@ public:
 	int countValue(int v);	//counts the number of iterations a certain value appears in the list
 	void displayValues();	//prints the values of the list
 
+	friend class Queue;
+	friend class Stack;
 };
 
 List::List() {
@@ -353,12 +356,12 @@ void List::displayValues()			//Prints out the contents of the nodes(Plan to upda
 /*************************************************************************************************************/
 
 //Stack
-class Stack {
+class mStack {
 private:
 	List list;	//Uses double linked list
 public:
-	Stack() {};	//Constructor for stack
-	~Stack() { Clear(); }	//Destructor for Stack (Utilizes the clear operator from the linked list)
+	mStack();	//Constructor for stack
+	~mStack();	//Destructor for Stack (Utilizes the clear operator from the linked list)
 
 	void Push(int el);	//Pushes element ontop of stack
 	int Pop();	//takes the top element off and returns the value of it
@@ -367,11 +370,19 @@ public:
 	void Clear();	//removes all the elements
 };
 
-void Stack::Push(int el) {
+mStack::mStack() {
+	
+}
+
+mStack::~mStack() {
+	Clear();
+}
+
+void mStack::Push(int el) {
 	list.addToHead(el);
 }
 
-int Stack::Pop() {
+int mStack::Pop() {
 	int t = Top();
 	list.delHead();
 	return t;
@@ -381,17 +392,93 @@ int Stack::Pop() {
 	*/
 }
 
-int Stack::Top() const {
+int mStack::Top() const {
 	return list.getHead();
 }
 
-bool Stack::IsEmpty() const {
+bool mStack::IsEmpty() const {
 	return list.IsEmpty();
 }
 
-void Stack::Clear() {
+void mStack::Clear() {
 	while (IsEmpty() == false) {
 		Pop();
 	}
 	//l.~List(); //This would delete the whole list and not just clear it out
 }
+
+/****************************************************************************************************/
+
+//Queue
+class mQueue {
+private:
+	List l;
+public:
+	mQueue() {};
+	~mQueue() { Clear(); };
+
+	void Enqueue(int el);
+	int Dequeue();
+	bool IsEmpty() const;
+	void Clear();
+};
+
+void mQueue::Enqueue(int el) {
+	l.addToTail(el);
+}
+
+int mQueue::Dequeue() {
+	int first = l.getHead();
+	return first;
+}
+
+bool mQueue::IsEmpty() const {
+	return l.IsEmpty();
+}
+
+void mQueue::Clear() {
+	while (IsEmpty() == false)
+		Dequeue();
+}
+
+/*************************************************************************************************/
+
+//Binary Tree
+class TreeNode {
+private:
+	int value;
+	TreeNode* left;
+	TreeNode* right;
+public:
+	TreeNode(int v) {
+		value = v;
+		left = right = NULL;
+	}
+	TreeNode(int v, TreeNode* l, TreeNode* r) {
+		value = v;
+		left = l;
+		right = r;
+	}
+	friend class BTree;
+};
+
+class BTree {
+private:
+	TreeNode* root;
+public:
+	BTree(TreeNode* r) {
+		root = r;
+	}
+
+	bool IsEmpty() const;
+	void Clear(TreeNode* n);
+
+	int getHeight() const;
+	int countNodes() const;
+	TreeNode* getParent(TreeNode* n) const;
+	int countLeaves() const;
+	int findMin() const;
+	int findMax() const;
+
+
+};
