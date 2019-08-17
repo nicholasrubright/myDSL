@@ -31,6 +31,8 @@ public:
 	void addtoHead(int v);	//adds a node and turns it into new head
 	void addtoTail(int v);	//adds a node and turns it into new tail
 	void addAfter(SingNode* q, int v);	//adds a node after a specified node in the list
+
+	void delHead();	//deletes the head of the list (also can't be const,since it needs to be modifiable)
 };
 
 SingList::SingList() {	//creates an empty list
@@ -38,7 +40,9 @@ SingList::SingList() {	//creates an empty list
 }
 
 SingList::~SingList() {
-
+	while (IsEmpty() == false) {
+		delHead();
+	}
 }
 
 bool SingList::IsEmpty() const {	//checks if the list is empty
@@ -98,6 +102,14 @@ void SingList::addAfter(SingNode* q, int v) {	//adds a new node to the list afte
 	SingNode* r = new SingNode(v);	//creates new node with given value
 	r->next = q->next;	//new node points to what the given node was pointing at
 	q->next = r;	//given node now points to new node
+}
+
+void SingList::delHead()  {
+	//assert(IsEmpty() != true);
+	SingNode* r = h;	//creates r pointer then points to head node
+	h = h->next;	//new head is the next node in list
+	delete r;	//deletes the old head from list
+
 }
 
 /***************************************************************************************************************************/
