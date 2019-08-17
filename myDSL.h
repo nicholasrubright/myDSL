@@ -1,5 +1,5 @@
 //C++ Data Structure Library
-//Contains Linked List, Stack, Queue, Hash Table, Graph, and Trees
+//Contains Linked Lists, Trees, Tries, Graphs, Stack, Queue, Heap, and Hash Tables
 #include <iostream>
 #include <assert.h>
 using namespace std;
@@ -190,7 +190,6 @@ public:
 	int countValue(int v);	//counts the number of iterations a certain value appears in the list
 	void displayValues();	//prints the values of the list
 
-	//friend class Stack;
 };
 
 List::List() {
@@ -358,8 +357,8 @@ class Stack {
 private:
 	List list;	//Uses double linked list
 public:
-	//Stack() {};	//Constructor for stack
-	//~Stack() { Clear(); }	//Destructor for Stack (Utilizes the clear operator from the linked list)
+	Stack() {};	//Constructor for stack
+	~Stack() { Clear(); }	//Destructor for Stack (Utilizes the clear operator from the linked list)
 
 	void Push(int el);	//Pushes element ontop of stack
 	int Pop();	//takes the top element off and returns the value of it
