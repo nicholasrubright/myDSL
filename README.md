@@ -145,4 +145,5 @@ class Node {
 
 #### getLength()
 This simple operation returns the length of the list. So we can see how many elements are present in the list.
+
 ![getLength](img/get_length.png)
