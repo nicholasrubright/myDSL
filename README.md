@@ -110,7 +110,7 @@ class Node {            //Node class for double linked list
     friend class List;  //allows for the List class to utilize the node
 };
 ```
-Not much different than the class from the previous list and the actual list class is not different either. I added a lot more operations to try with this list since double linked list is more versatile than single linked list.
+Not much different than the class from the previous list and the actual list class is not different either. I added a lot more operations to try with this list since double linked list is more versatile than single linked list. (Some of these operations I did not implement yet)
 ```c++
 class Node {
     private:
