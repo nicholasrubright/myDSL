@@ -129,11 +129,50 @@ void SingList::addAfter(SingNode* q, int v) {	//adds a new node to the list afte
 }
 
 void SingList::delHead()  {
-	//assert(IsEmpty() != true);	//not needed?
-	SingNode* r = h;	//creates r pointer then points to head node
-	h = h->next;	//new head is the next node in list
-	delete r;	//deletes the old head from list
+	if (hasLast() == true)
+	{
+		removeLast();
+	}
+	else {
+		SingNode* r = h;	//creates r pointer then points to head node
+		h = h->next;	//new head is the next node in list
+		delete r;	//deletes the old head from list
+	}
 
+}
+
+void SingList::delTail() {
+	if (hasLast()) {
+		removeLast();
+	}
+	else {
+		SingNode* s = searchPrev(t);
+		s->next = NULL;
+		delete t;
+		t = s;
+	}
+}
+
+bool SingList::hasLast() const {
+	if (h == t)
+		return true;
+	return false;
+}
+
+SingNode* SingList::searchPrev(SingNode* q) const {
+	assert(q != NULL);
+	SingNode* p = h;
+	while (p->next != q) {
+		p = p->next;
+	}
+	return p;
+}
+
+void SingList::removeLast() {
+	assert(hasLast());
+	SingNode* p = h;
+	delete p;
+	h = t = NULL;
 }
 
 /***************************************************************************************************************************/
@@ -228,7 +267,8 @@ void List::addEmpty(int v)	//Checks if the list is empty, then adds a new node
 	Node* r = new Node(v);	//Creates a new node
 	r->next = NULL;	//r next pointer is set to NULL
 	r->prev = NULL;	//r previous pointer is set to NULL
-	head = tail = r;	//head and tail are set to r
+	head = r;	//head and tail are set to r
+	tail = r;
 
 }
 
@@ -269,10 +309,16 @@ void List::addAfter(Node* q, int v)
 
 void List::delHead()	//moves the head to the next node and deletes old head
 {
-	Node* r = head;		//creates a new node pointer to the head node
-	head = head->next;	//moves the head of the list to the next node
-	head->prev = NULL;	//makes the new head's prev pointer NULL
-	delete r;			//deletes the old head node
+	if(HasOne())
+	{
+		RemoveLast();
+	}
+	else {
+		Node* r = head;		//creates a new node pointer to the head node
+		head = head->next;	//moves the head of the list to the next node
+		delete r;
+		head->prev = NULL;	//makes the new head's prev pointer NULL
+	}
 }
 
 void List::delTail()	//moves the tail to the previous node
@@ -295,17 +341,15 @@ int List::getTail()
 
 bool List::HasOne() const	//Returns boolean whether it has only one element in list
 {
-	if (head == NULL)		//Checks if the head is set to null
-		return false;		//returns false since means no elements in List
-	if (head == tail)		//checks if the head and tail are the same node
-		return true;		//which means that there is only one node in the list
-	return false;			//returns false for any other condition
+	return (head != NULL && head == tail);
 }
 
 void List::RemoveLast()		//Removes the last element in the List (Should be only element)
 {
-	delete head;			//Deletes the head pointer
-	head = tail = NULL;		//Resets the list to NULL
+	if (HasOne() == true) {
+		delete head;
+		head = tail = NULL;
+	}
 }
 
 
@@ -366,7 +410,7 @@ class Stack {
 private:
 	List list;	//Uses double linked list
 public:
-	Stack();	//Constructor for stack
+	Stack() {};	//Constructor for stack
 	~Stack();	//Destructor for Stack (Utilizes the clear operator from the linked list)
 
 	void Push(int el);	//Pushes element ontop of stack
@@ -486,7 +530,7 @@ public:
 bool BTree::IsEmpty() const {
 	return (root == NULL);
 }
-
+/*
 void BTree::BreadthFirst()
 {
 	Queue q;	//need to create a queue, list, and node class that carries a node instead of a int variable
@@ -499,3 +543,4 @@ void BTree::BreadthFirst()
 
 	}
 }
+*/
