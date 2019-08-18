@@ -360,7 +360,7 @@ int List::getLength() const	//returns the number of nodes
 
 	if (IsEmpty() == true)	//determines if the list is empty
 	{
-		return counter - 1;	//set the counter to 1 less to show there is no list
+		return counter;	//returns 0
 	}
 	else
 	{

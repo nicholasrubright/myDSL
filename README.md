@@ -146,4 +146,20 @@ class Node {
 #### getLength()
 This simple operation returns the length of the list. So we can see how many elements are present in the list.
 
+```c++
+    int counter = 0;        //Counter variable for length
+    Node* r = head;         //Node pointer to navigate through list
+
+    if(IsEmpty() == true) { //if the list is empty returns 0
+        return counter;
+    }
+    else {
+        while(r != NULL) {  //while there are still nodes in the list
+            r = r->next;    //moves to the next node in line
+            counter++;      //increments the counter
+        }
+    }
+return counter; //returns the length of list
+```
+
 ![getLength](img/get_length.png)
