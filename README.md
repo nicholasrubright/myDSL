@@ -110,4 +110,34 @@ class Node {            //Node class for double linked list
     friend class List;  //allows for the List class to utilize the node
 };
 ```
+Not much different than the class from the previous list and the actual list class is not different either. I added a lot more operations to try with this list since double linked list is more versatile than single linked list.
+```c++
+class Node {
+    private:
+        Node* head;
+        Node* tail;
+    public:
+        List();		//Intitalizes a empty list
+	   ~List();	//Destructor for list
+	   bool IsEmpty() const; //creates an empty list
+	   int getHead() const; //returns the head of the list
+	   int getTail() const; //returns the tail of the list
+	   void addEmpty(int v); //adds an element to an empty list
+	   void addToHead(int v); //adds an element to the front of the list
+	   void addToTail(int v); //adds an element to the back of the list
+	   void addAfter(Node* q, int v); //adds an element after a specified node
+	   int getHead();	//returns the value of the head node in the list
+	   int getTail();	//returns the value of the tail node in the list
+    
+        //Custom Operation we did not go over in class
+        int getLength() const;	//Returns the length of a Linear List by counting the individual nodes
+        int getSum();		//Returns the sum of the node's values
+        void condenseList(); //Combines two nodes into one by adding the values
+        void changeValue(Node* q, int v);	//Changes the value of a node, again can't unless we know the individual nodes
+        void deleteValue(int v);	//searches for value and deletes the node with the value
+        int countValue(int v);	//counts the number of iterations a certain value appears in the list
+        void displayValues();	//prints the values of the list
+        ........
+};
+
 
