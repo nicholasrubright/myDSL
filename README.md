@@ -87,4 +87,9 @@ Again we create a new node r with the value given in the function call. The new 
 In any case that we need to append or add a node to a certain location in the list, we will probably use this operation.
 
 ## Double Linked List
+![double_list](img/double_list.png)
+
+
+A double linked list is a linear collection of data elements, called nodes, much like a single linked list but instead each node points to the previous and next node by the means of pointers.
+The `previous` of the head and the `next` of tail has `NULL`. The in an empty list, both `head` and `tail` are `NULL`
 
