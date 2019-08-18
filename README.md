@@ -59,8 +59,13 @@ The beginning of the list is not too excited, a simple if statement to see if th
     r->next = head;
     head = r;
 ```
-Here we see that we create a new node that holds the value the function was given. We then use the new node's pointer to point to the old head node of the list. Lastly we change the head to the new node, thus changing the head of the list.
+Here we see that we create a new node that holds the value the function was given. We then use the new node's pointer to point to the old head node of the list. Lastly we change the head to the new node, thus changing the head of the list. Below is a image of the process to visualize it better.
+
+1. We create a new node, it doesn't point to anything it just holds the value inside of it for now
+2. The new node's next pointer now points to the location of the previous head of the list.
+3. Finally, make the new node the head of the list.
 
 ![addtohead](img/add_head2.png)
+
 ## Double Linked List
 
