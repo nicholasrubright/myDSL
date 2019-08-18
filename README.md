@@ -84,5 +84,7 @@ Again we create a new node r with the value given in the function call. The new 
 
 ![addafter](img/add_after2.png)
 
+In any case that we need to append or add a node to a certain location in the list, we will probably use this operation.
+
 ## Double Linked List
 
