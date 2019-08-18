@@ -2,7 +2,6 @@
 //Contains Linked Lists, Trees, Tries, Graphs, Stack, Queue, Heap, and Hash Tables
 #include <iostream>
 #include <assert.h>
-#include <queue>	//for breadthfirst
 using namespace std;
 
 
@@ -461,6 +460,7 @@ public:
 	friend class BTree;
 };
 
+
 class BTree {
 private:
 	TreeNode* root;
@@ -479,5 +479,23 @@ public:
 	int findMin() const;
 	int findMax() const;
 
+	void BreadthFirst();
 
 };
+
+bool BTree::IsEmpty() const {
+	return (root == NULL);
+}
+
+void BTree::BreadthFirst()
+{
+	Queue q;	//need to create a queue, list, and node class that carries a node instead of a int variable
+	if (root != NULL)
+		q.Enqueue(root);
+	while (q.IsEmpty() == false) {
+		TreeNode* n = q.Dequeue();
+		if (n ->left != NULL)
+			q.Enqueue(n->left);
+
+	}
+}
