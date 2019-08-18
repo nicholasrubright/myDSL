@@ -355,7 +355,7 @@ void List::RemoveLast()		//Removes the last element in the List (Should be only 
 
 int List::getLength() const	//returns the number of nodes
 {
-	int counter = 1;	//counter for each node	
+	int counter = 0;	//counter for each node	
 	Node* r = head;		//Create node that starts at the head
 
 	if (IsEmpty() == true)	//determines if the list is empty
