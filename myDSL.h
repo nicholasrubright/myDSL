@@ -153,6 +153,7 @@ public:
 		prev = p;
 	}
 	friend class List;
+	friend class mQueue;
 };
 
 class List {			//List class utilized from CMPSC Course
@@ -209,10 +210,7 @@ List::~List()	//Destructor for list
 
 bool List::IsEmpty() const	//returns if a list is empty
 {
-	if (head && tail == NULL)	//Checks if the head and the tail pointers are NULL
-		return true;			//Will return true since there is nothing in the list
-	else
-		return false;			//or return false since there is element(s) in the list
+	return (head == NULL);			//or return false since there is element(s) in the list
 }
 
 int List::getHead() const
@@ -246,11 +244,16 @@ void List::addToHead(int v)	//adds a value to the start of the list
 
 void List::addToTail(int v)	//adds a new node to the end of a list
 {
-	Node* r = new Node(v);	//created new node with value
-	tail->next = r;	//switches the next node of tail to r
-	r->prev = tail;	//r prev pointer is now to old tail
-	r->next = NULL;	//the new node next pointer points to NULL
-	tail = r;	//sets tail equal to new node
+	if (IsEmpty() == true)
+	{
+		addEmpty(v);
+	}
+	else {
+		Node* r = new Node(v);	//created new node with value
+		r->prev = tail;
+		tail->next = r;
+		tail = r;
+	}
 }
 
 void List::addAfter(Node* q, int v)
@@ -429,6 +432,7 @@ void mQueue::Enqueue(int el) {
 
 int mQueue::Dequeue() {
 	int first = l.getHead();
+	l.delHead();
 	return first;
 }
 

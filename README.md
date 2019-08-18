@@ -91,7 +91,7 @@ In any case that we need to append or add a node to a certain location in the li
 
 
 A double linked list is a linear collection of data elements, called nodes, much like a single linked list but instead each node points to the previous and next node by the means of pointers.
-The `previous` of the head and the `next` of tail has `NULL`. The in an empty list, both `head` and `tail` are `NULL`
+The `previous` of the head and the `next` of tail has `NULL`. In an empty list, both `head` and `tail` are `NULL`
 
 
 This linked list uses slightly different nodes since the list is able to be navigated from the first element to the last and vice versa.
