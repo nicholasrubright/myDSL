@@ -240,9 +240,8 @@ void List::addToHead(int v)	//adds a value to the start of the list
 	}
 	else {
 		Node* r = new Node(v);	//creates new node
-		//head->prev = r;	//the old head's prev pointer points to new node
 		r->next = head;	//the new node next pointer points to the old head;
-		head->prev = r;
+		head->prev = r;	//head prev pointer now points to the new node
 		head = r;	//sets head to new node
 	}
 }
@@ -378,10 +377,6 @@ public:
 	void Clear();	//removes all the elements
 };
 
-Stack::Stack() {
-	
-}
-
 Stack::~Stack() {
 	Clear();
 }
@@ -394,10 +389,6 @@ int Stack::Pop() {
 	int t = Top();
 	list.delHead();
 	return t;
-	/*
-	return l.getHead();
-	l.delHead;
-	*/
 }
 
 int Stack::Top() const {
@@ -412,7 +403,6 @@ void Stack::Clear() {
 	while (IsEmpty() == false) {
 		Pop();
 	}
-	//l.~List(); //This would delete the whole list and not just clear it out
 }
 
 /****************************************************************************************************/
