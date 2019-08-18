@@ -162,5 +162,10 @@ This simple operation returns the length of the list. So we can see how many ele
     }
 return counter; //returns the length of list
 ```
+Here we see a simple counter function. It increments the counter variable as we move from each node in the list. It does this until it reaches the end of the list.
+
+1. Create the node pointer to navigate the list and first point it to head
+2. Move the node pointer r to the next node in the list
+3. Repeat until there are no more nodes in the list
 
 ![getLength](img/get_length.png)
