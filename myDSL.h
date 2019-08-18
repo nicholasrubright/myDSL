@@ -235,11 +235,16 @@ void List::addEmpty(int v)	//Checks if the list is empty, then adds a new node
 
 void List::addToHead(int v)	//adds a value to the start of the list
 {
-	Node* r = new Node(v);	//creates new node
-	head->prev = r;	//the old head's prev pointer points to new node
-	r->next = head;	//the new node next pointer points to the old head;
-	r->prev = NULL;	//new node prev pointer points to NULL
-	head = r;	//sets head to new node
+	if (IsEmpty() == true) {
+		addEmpty(v);
+	}
+	else {
+		Node* r = new Node(v);	//creates new node
+		//head->prev = r;	//the old head's prev pointer points to new node
+		r->next = head;	//the new node next pointer points to the old head;
+		head->prev = r;
+		head = r;	//sets head to new node
+	}
 }
 
 void List::addToTail(int v)	//adds a new node to the end of a list
@@ -359,12 +364,12 @@ void List::displayValues()			//Prints out the contents of the nodes(Plan to upda
 /*************************************************************************************************************/
 
 //Stack
-class mStack {
+class Stack {
 private:
 	List list;	//Uses double linked list
 public:
-	mStack();	//Constructor for stack
-	~mStack();	//Destructor for Stack (Utilizes the clear operator from the linked list)
+	Stack();	//Constructor for stack
+	~Stack();	//Destructor for Stack (Utilizes the clear operator from the linked list)
 
 	void Push(int el);	//Pushes element ontop of stack
 	int Pop();	//takes the top element off and returns the value of it
@@ -373,19 +378,19 @@ public:
 	void Clear();	//removes all the elements
 };
 
-mStack::mStack() {
+Stack::Stack() {
 	
 }
 
-mStack::~mStack() {
+Stack::~Stack() {
 	Clear();
 }
 
-void mStack::Push(int el) {
+void Stack::Push(int el) {
 	list.addToHead(el);
 }
 
-int mStack::Pop() {
+int Stack::Pop() {
 	int t = Top();
 	list.delHead();
 	return t;
@@ -395,15 +400,15 @@ int mStack::Pop() {
 	*/
 }
 
-int mStack::Top() const {
+int Stack::Top() const {
 	return list.getHead();
 }
 
-bool mStack::IsEmpty() const {
+bool Stack::IsEmpty() const {
 	return list.IsEmpty();
 }
 
-void mStack::Clear() {
+void Stack::Clear() {
 	while (IsEmpty() == false) {
 		Pop();
 	}
@@ -413,12 +418,12 @@ void mStack::Clear() {
 /****************************************************************************************************/
 
 //Queue
-class mQueue {
+class Queue {
 private:
 	List l;
 public:
-	mQueue() {};
-	~mQueue() { Clear(); };
+	Queue() {};
+	~Queue() { Clear(); };
 
 	void Enqueue(int el);
 	int Dequeue();
@@ -426,21 +431,21 @@ public:
 	void Clear();
 };
 
-void mQueue::Enqueue(int el) {
+void Queue::Enqueue(int el) {
 	l.addToTail(el);
 }
 
-int mQueue::Dequeue() {
+int Queue::Dequeue() {
 	int first = l.getHead();
 	l.delHead();
 	return first;
 }
 
-bool mQueue::IsEmpty() const {
+bool Queue::IsEmpty() const {
 	return l.IsEmpty();
 }
 
-void mQueue::Clear() {
+void Queue::Clear() {
 	while (IsEmpty() == false)
 		Dequeue();
 }
