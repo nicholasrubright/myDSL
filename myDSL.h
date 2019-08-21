@@ -230,6 +230,8 @@ public:
 	int countValue(int v);	//counts the number of iterations a certain value appears in the list
 	void displayValues();	//prints the values of the list
 
+	void reverseList();
+
 	friend class Queue;
 	friend class Stack;
 };
@@ -398,9 +400,14 @@ void List::displayValues()			//Prints out the contents of the nodes(Plan to upda
 	Node* r = head;			//Creates a new node and makes it point to the head node
 	while (r != NULL)		//Loop to go through the list
 	{
-		cout << r->data << ", ";	//Prints out the value of node
+		cout << "[" << r->data << "]";
+		//cout << r->data << ", ";	//Prints out the value of node
 		r = r->next;				//moves the pointer to the next node
 	}
+}
+
+void List::reverseList() {
+
 }
 
 /*************************************************************************************************************/
@@ -418,6 +425,9 @@ public:
 	int Top() const;	//returns top element value
 	bool IsEmpty() const;	//checks if the stack is empty
 	void Clear();	//removes all the elements
+
+	//Custom operations
+	void Flip();
 };
 
 Stack::~Stack() {
@@ -446,6 +456,10 @@ void Stack::Clear() {
 	while (IsEmpty() == false) {
 		Pop();
 	}
+}
+
+void Stack::Flip() {
+	list.reverseList();
 }
 
 /****************************************************************************************************/
@@ -504,7 +518,6 @@ public:
 	friend class BTree;
 };
 
-
 class BTree {
 private:
 	TreeNode* root;
@@ -530,7 +543,7 @@ public:
 bool BTree::IsEmpty() const {
 	return (root == NULL);
 }
-/*
+
 void BTree::BreadthFirst()
 {
 	Queue q;	//need to create a queue, list, and node class that carries a node instead of a int variable
@@ -543,4 +556,3 @@ void BTree::BreadthFirst()
 
 	}
 }
-*/
