@@ -2,6 +2,8 @@
 //Contains Linked Lists, Trees, Tries, Graphs, Stack, Queue, Heap, and Hash Tables
 #include <iostream>
 #include <assert.h>
+
+#include <queue>	//Temporary usage for tree traversal
 using namespace std;
 
 
@@ -497,9 +499,52 @@ void Queue::Clear() {
 		Dequeue();
 }
 
+
 /*************************************************************************************************/
 
 //Binary Tree
+
+/*
+class TreeNode {
+private:
+	int data;			//node's value
+	TreeNode* left;		//pointer to the next node on the left
+	TreeNode* right;	//pointer to the next node on the right
+	TreeNode(int d)
+	{
+		data = d;
+		left = right = NULL;
+	}
+public:
+	void printBreadthfirst(TreeNode* q);
+	
+	void printPreorder(TreeNode* q);
+	void printInorder(TreeNode* q);
+	void printPostOrder(TreeNode* q);
+};
+
+void TreeNode::printBreadthfirst(TreeNode* root) {
+	
+	queue<TreeNode*> q;		//Queue that holds the tree nodes
+	if (root != NULL)		//Makes sure that the root is not empty
+	{
+		q.push(root);		//puts the root in the front of the list
+	}
+	while (q.empty() == false)
+	{
+		TreeNode* n = q.front();
+		cout << n->data << ", ";
+		q.pop();
+
+		if (n->left != NULL)
+			q.push(n->left);
+		if (n->right != NULL)
+			q.push(n->right);
+	}
+}
+
+*/
+/*
 class TreeNode {
 private:
 	int value;
@@ -544,9 +589,10 @@ bool BTree::IsEmpty() const {
 	return (root == NULL);
 }
 
+
 void BTree::BreadthFirst()
 {
-	Queue q;	//need to create a queue, list, and node class that carries a node instead of a int variable
+	Queue<TreeNode*> q;	//need to create a queue, list, and node class that carries a node instead of a int variable
 	if (root != NULL)
 		q.Enqueue(root);
 	while (q.IsEmpty() == false) {
@@ -556,3 +602,4 @@ void BTree::BreadthFirst()
 
 	}
 }
+*/
