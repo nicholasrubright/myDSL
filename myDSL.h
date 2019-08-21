@@ -544,7 +544,7 @@ void TreeNode::printBreadthfirst(TreeNode* root) {
 }
 
 */
-/*
+
 class TreeNode {
 private:
 	int value;
@@ -572,7 +572,7 @@ public:
 	}
 
 	bool IsEmpty() const;
-	void Clear(TreeNode* n);
+	void Clear(TreeNode* n);			//Clears the whole tree and deletes all the nodes
 
 	int getHeight() const;
 	int countNodes() const;
@@ -592,14 +592,17 @@ bool BTree::IsEmpty() const {
 
 void BTree::BreadthFirst()
 {
-	Queue<TreeNode*> q;	//need to create a queue, list, and node class that carries a node instead of a int variable
+	queue<TreeNode*> q;	//need to create a queue, list, and node class that carries a node instead of a int variable
 	if (root != NULL)
-		q.Enqueue(root);
-	while (q.IsEmpty() == false) {
-		TreeNode* n = q.Dequeue();
+		q.push(root);
+	while (q.empty() == false) {
+		TreeNode* n = q.front();
+		cout << n->value << ",";
+		q.pop();
 		if (n ->left != NULL)
-			q.Enqueue(n->left);
-
+			q.push(n->left);
+		if (n->right != NULL)
+			q.push(n->right);
 	}
 }
-*/
+
