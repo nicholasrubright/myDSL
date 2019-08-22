@@ -174,3 +174,9 @@ If we ever have to find a the length of a list, this operation will come in hand
 
 ## Binary Tree
 ![tree](img/tree.png)
+
+A tree is a type of graph, where each node or leaf of a tree are connected by lines or edges. When a tree only has up to two max children is known as a Binary Tree. The node at the beginning of the tree is known as the root. This is where all the other nodes connect to. Navigation through these trees is known as tree traversals. The image below is going to be the tree we use for examples that come up to understand these traversals.
+
+![tree2](img/tree2.png)
+
+### Breadth-first Traversal
