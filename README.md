@@ -171,3 +171,6 @@ Here we see a simple counter function. It increments the counter variable as we 
 ![getLength](img/get_length.png)
 
 If we ever have to find a the length of a list, this operation will come in handy.
+
+## Binary Tree
+![tree](img/tree.png)

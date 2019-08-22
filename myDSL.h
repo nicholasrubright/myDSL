@@ -592,10 +592,10 @@ bool BTree::IsEmpty() const {
 
 void BTree::BreadthFirst()
 {
-	queue<TreeNode*> q;	//need to create a queue, list, and node class that carries a node instead of a int variable
+	queue<TreeNode*> q;	
 	if (root != NULL)
-		q.push(root);
-	while (q.empty() == false) {
+		q.push(root);				//Starts at the root of the tree
+	while (q.empty() == false) {	//Runs until there are no more nodes in the tree
 		TreeNode* n = q.front();
 		cout << n->value << ",";
 		q.pop();
